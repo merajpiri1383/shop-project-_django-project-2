@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load sorl_thumbnail %}
+{% block title %}Detail product{% endblock %}
+{% block content %}
+<div class="row my-5 media">
+    <div class="col-md-4 text-center ">
+        {% thumbnail product.image '400x280' crop="center" as img %}
+             <img src="{{img.url}}" class="img-thumbnail">
+        {% endthumbnail %}
+    </div>
+    <div class="col-md-8 row media-body ">
+        <div class="col-md-12">
+            <h3>{{product.name}}</h3>
+        </div>
+        <div class="col-md-12">
+            <h5>{{product.description}}</h5>
+        </div>
+    </div>
+</div>
+{% endblock %}

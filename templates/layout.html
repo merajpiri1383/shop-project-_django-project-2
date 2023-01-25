@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <div class="container" >
+        <section class="py-2">
+            <nav class="navbar navbar-expand card row">
+                <section class="col-12 d-lg-none navbar navbar-expand row">
+                    <nav class="navbar-nav row col-12">
+                        <li class="nav-item col-4">
+                            <a href="{% url 'shop_app:index' %}" class="navbar-brand" >Shop</a>
+                        </li>
+                        <nav class="nav-item offset-4 col-4 text-right">
+                                <button class="btn btn-outline-primary" data-target="#btn" data-toggle="collapse" type="button"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                                <nav class="collapse" id="btn">
+                                    <li>
+                                        <a href="{% url 'shop_app:index' %}" class="nav-link font-weight-bolder">Products</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-toggle="popover" data-placement="bottom" data-html="true"  class="nav-link c1 font-weight-bolder btn btn-secondary">Cart <span class="badge-pill badge-warning">(0)</span></a>
+                                    </li>
+                                </nav>
+                        </nav>
+                    </nav>
+                </section>
+                <section class=" col-md-12 row d-none d-lg-block">
+                    <ul class="navbar-nav nav-pills col-md-6">
+                        <li class="nav-item ">
+                            <a href="{% url 'shop_app:index' %}" class="nav-link font-weight-bolder">Products</a>
+                        </li>
+                        <li class="">
+                            <a href="#" data-toggle="popover" data-placement="bottom" data-html="true"  class="nav-link font-weight-bolder c2 btn btn-secondary">Cart <span class="badge-pill badge-warning">(0)</span></a>
+                        </li>
+                    </ul>
+                </section>
+            </nav>
+        </section>
+        {% block content %}{% endblock %}
+    </div>
+    <script src="{% static 'jquery-3.6.3.js' %}"></script>
+    <script src="{% static 'jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <script src="{% static 'index.js' %}"></script>
+</body>
+</html>

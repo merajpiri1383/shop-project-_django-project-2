@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% load static %}
+{% load sorl_thumbnail %}
+{% block title %} Shop {% endblock %}
+{% block content %}
+<div class="row">
+    <form method="get" class="card col-md-12 row mt-2 no-gutters">
+        <div class="col-md-10 mt-3">
+            <input type="text" name="search" class="form-control">
+        </div>
+        <div class="col-md-2 mt-3">
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+        </div>
+    </form>
+</div>
+<div class="row" >
+    {% for product in products %}
+    <div class="col-lg-4 col-md-6 card my-2">
+        <div class="card-header text-center">
+            {% thumbnail product.image '250x200' crop="center" as img %}
+                <img src="{{img.url}}" class="img-thumbnail">
+            {% endthumbnail %}
+        </div>
+        <div class="card-body">
+            <h3 class="card-title" id="product_title_{{ product.id }}" product_name="{{product.title}}  {{product.name}}">{{product.title}}</h3>
+            <h4 id="product_name_{{ product.id }}">{{product.name}}</h4>
+            <h4 id="product_price_{{ product.id}}">{{ product.price }}</h4>
+            <a class="btn btn-primary" href="{% url 'shop_app:detail' product.id %}">Detail</a>
+            <button class="btn btn-primary btn-add-card" id="{{ product.id }}">Add to Card</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="row my-5 ">
+    <div class="col-md-6 offset-md-3 text-center  row">
+        <div class="col-md-4">
+        {% if products.has_previous %}
+           <a href="?page={{products.previous_page_number}}" class="page-link btn">Prevous</a>                
+        {% endif %}
+        </div>
+        <div class="col-md-4">
+            <a href="?page={{products.number}}" class="page-link btn">Current</a>
+        </div>
+        <div class="col-md-4">
+        {% if products.has_next %}
+           <a href="?page={{products.next_page_number}}" class="page-link btn ">Next</a>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
